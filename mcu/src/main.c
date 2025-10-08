@@ -13,7 +13,7 @@
 #define signalB PA9
 
 // Define Parameters
-#define SAMPLE_PERIOD (0.25) // Sample period in s (250 ms)
+#define SAMPLE_PERIOD (0.125) // Sample period in s (250 ms)
 #define PULSES_PER_REV (408) // 102 for the motor * 4 for quadrature encoding
 
 // Global Variables
@@ -21,6 +21,7 @@ volatile int currPosition = 0;
 volatile int direction = 0; // 1: forward, -1: backward, 0: stopped
 volatile int newPosition = 0; 
 volatile int sample = 0; // Flag to start sampling
+volatile int dist  = 0;
 volatile double delta = 0.0; // Change in position
 volatile double speedRPS = 0.0; // Speed in Rev/s
 
@@ -57,6 +58,7 @@ int main(void) {
 
     while (1) {
         if(sample) { 
+            delta = (double)dist;
             // Determine direction
             if (delta > 0) {
                 direction = 1; 
@@ -89,16 +91,16 @@ void TIM6_DAC_IRQHandler(void) {
         TIM6->SR &= ~(1 << 0); // Clear UIF
 
         newPosition = TIM1->CNT; // Read current position from TIM1
-        delta = newPosition - currPosition;
+        dist = newPosition - currPosition;
 
         // Handle wrap-around
-        if (delta > (PULSES_PER_REV / 2)) {
-            delta -= PULSES_PER_REV;
-        } else if (delta < -(PULSES_PER_REV / 2)) {
-            delta += PULSES_PER_REV;
-        } else if (delta == (PULSES_PER_REV / 2)){
-            delta = (TIM1->CR1 & TIM_CR1_DIR) ? -(double)(PULSES_PER_REV / 2)
-                                                : (double)(PULSES_PER_REV / 2);
+        if (dist > (PULSES_PER_REV / 2)) {
+            dist -= PULSES_PER_REV;
+        } else if (dist < -(PULSES_PER_REV / 2)) {
+            dist += PULSES_PER_REV;
+        } else if (dist == (PULSES_PER_REV / 2)){
+            dist = (TIM1->CR1 & TIM_CR1_DIR) ? -(PULSES_PER_REV / 2)
+                                                :(PULSES_PER_REV / 2);
         }
         
         currPosition = newPosition; // Update position
