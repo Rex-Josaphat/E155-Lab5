@@ -118,3 +118,12 @@ void togglePin(int gpio_pin) {
 	// Use XOR to toggle
 	GPIO_PORT_PTR->ODR ^= (1 << pin_offset);
 }
+
+void swPullUp(int gpio_pin) {
+	// Get pointer to base address of the corresponding GPIO pin and pin offset
+	GPIO_TypeDef * GPIO_PORT_PTR = gpioPinToBase(gpio_pin);
+	int pin_offset = gpioPinOffset(gpio_pin);
+
+    GPIO_PORT_PTR->PUPDR &= ~(0x3 << (2 * pin)); // Clear the 2 bits for this pin
+    GPIO_PORT_PTR->PUPDR |= (0x1 << (2 * pin));  // Set Pin to 01 (pull-up)
+}

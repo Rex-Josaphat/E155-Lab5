@@ -88,14 +88,14 @@
 // Function prototypes
 ///////////////////////////////////////////////////////////////////////////////
 
-void pinMode(int pin, int function);
+void pinMode(int gpio_pin, int function);
 
-int digitalRead(int pin);
+int digitalRead(int gpio_pin);
 
-void digitalWrite(int pin, int val);
+void digitalWrite(int gpio_pin, int val);
 
-void togglePin(int pin);
+void togglePin(int gpio_pin);
 
-void enablePullUp(int pin);
+void enablePullUp(int gpio_pin);
 
 #endif
