@@ -1,6 +1,11 @@
+// Josaphat Ngoga
+// jngoga@g.hmc.edu
+// 10/5/2025
+
 // STM32L432KC_GPIO.c
 // Source code for GPIO functions
 
+#include <stdint.h>
 #include "STM32L432KC_RCC.h"
 #include "STM32L432KC_GPIO.h"
 
@@ -124,6 +129,6 @@ void swPullUp(int gpio_pin) {
 	GPIO_TypeDef * GPIO_PORT_PTR = gpioPinToBase(gpio_pin);
 	int pin_offset = gpioPinOffset(gpio_pin);
 
-    GPIO_PORT_PTR->PUPDR &= ~(0x3 << (2 * pin)); // Clear the 2 bits for this pin
-    GPIO_PORT_PTR->PUPDR |= (0x1 << (2 * pin));  // Set Pin to 01 (pull-up)
+    GPIO_PORT_PTR->PUPDR &= ~(0x3 << (2 * pin_offset)); // Clear the 2 bits for this pin
+    GPIO_PORT_PTR->PUPDR |= (0x1 << (2 * pin_offset));  // Set Pin to 01 (pull-up)
 }

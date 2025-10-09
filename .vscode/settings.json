@@ -2,6 +2,11 @@
     "files.associations": {
         "stm32l432kc_tim.h": "c",
         "stm32l432kc_gpio.h": "c",
-        "stm32l432kc_rcc.h": "c"
+        "stm32l432kc_rcc.h": "c",
+        "stdint.h": "c",
+        "stm32l432kc.h": "c",
+        "vcruntime.h": "c",
+        "stdio.h": "c",
+        "corecrt.h": "c"
     }
 }

@@ -4,17 +4,17 @@
 
 // Code to read quadrature encoder using and output speed with direction
 
-#include "lib/STM32L432KC.h"
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
+#include "lib/STM32L432KC.h"
 
 // Define Pins and Timers Used
 #define signalA PA8
 #define signalB PA9
 
 // Define Parameters
-#define SAMPLE_PERIOD (0.125) // Sample period in s (250 ms)
-#define PULSES_PER_REV (408) // 102 for the motor * 4 for quadrature encoding
+#define SAMPLE_PERIOD (0.09) // Sample period in s
+#define PULSES_PER_REV (408*4) // 408 for the motor * 4 for quadrature encoding
 
 // Global Variables
 volatile int currPosition = 0;

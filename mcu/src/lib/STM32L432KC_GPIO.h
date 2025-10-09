@@ -88,6 +88,16 @@
 // Function prototypes
 ///////////////////////////////////////////////////////////////////////////////
 
+void gpioEnable(int port_id);
+
+int gpioPinOffset(int gpio_pin);
+
+int gpioPinToPort(int gpio_pin);
+
+GPIO_TypeDef * gpioPortToBase(int port);
+
+GPIO_TypeDef * gpioPinToBase(int gpio_pin);
+
 void pinMode(int gpio_pin, int function);
 
 int digitalRead(int gpio_pin);

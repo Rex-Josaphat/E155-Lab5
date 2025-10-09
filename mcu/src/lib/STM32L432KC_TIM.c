@@ -4,8 +4,9 @@
 
 // Source code for timer functions
 
-#include "STM32L432KC_TIM.h"
 #include <stdint.h>
+#include <stdio.h>
+#include "STM32L432KC_TIM.h"
 
 // Clear TIM count status
 void resetTIM(TIM_TypeDef* TIM) {
