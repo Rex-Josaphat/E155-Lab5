@@ -73,9 +73,9 @@ int main(void) {
 
             // Display speed and direction
             if (direction == 1) {
-                printf("Speed: %.2f Rev/s, Direction: Forward\n", speedRPS);
+                printf("Speed: %.2f Rev/s, Direction: Clockwise\n", speedRPS);
             } else if (direction == -1) {
-                printf("Speed: %.2f Rev/s, Direction: Backward\n", speedRPS);
+                printf("Speed: %.2f Rev/s, Direction: Counter-Clockwise\n", speedRPS);
             } else {
                 printf("Speed: 0.00 Rev/s, Motor Stopped\n");
             }
