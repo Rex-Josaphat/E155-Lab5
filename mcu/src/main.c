@@ -13,7 +13,7 @@
 #define signalB PA9
 
 // Define Parameters
-#define SAMPLE_PERIOD (0.09) // Sample period in s
+#define SAMPLE_PERIOD (0.083) // Sample period in s
 #define PULSES_PER_REV (408*4) // 408 for the motor * 4 for quadrature encoding
 
 // Global Variables
